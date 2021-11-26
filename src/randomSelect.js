@@ -1,5 +1,5 @@
 //https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=gbamaster&logNo=220615918830
-let category = [
+export let category = [
   "중식",
   "일식",
   "고기",
