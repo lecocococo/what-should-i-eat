@@ -5,6 +5,8 @@ import "./randomSelect";
 import React, { Component } from "react";
 import MapContainer from "./mapContainer";
 import { category } from "./randomSelect";
+import "./dbdb";
+import Dbdb from "./dbdb";
 
 // class Map extends Component{
 //   render(){
@@ -28,14 +30,52 @@ class Food extends Component {
     return <p>{category[getRandomInt(0, category.length)]}</p>;
   }
 }
-function App() {
-  return (
-    <div className="App">
-      <h1>점심뭐먹지?</h1>
-      <Food></Food>
-      {/* <MapContainer></MapContainer> */}
-    </div>
-  );
+
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      username: null,
+    };
+  }
+
+  submitId = () => {
+    const post = {
+      test: this.state.testbody,
+    };
+
+    fetch("http://localhost:3001/api", {
+      method: "post", // 통신방법
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(post),
+    })
+      .then((res) => res.json())
+      .then((json) => {
+        this.setState({
+          testbody: json.text,
+        });
+      });
+  };
+  // componentDidMount() {
+  //   fetch("http://localhost:3001/aa")
+  //     .then((res) => res.json())
+  //     .then((data) => this.setState({ username: data.username }));
+  // }
+  render() {
+    const { username } = this.state;
+    return (
+      <div className="App">
+        <h1>점심뭐먹지?</h1>
+        <h2> {username ? `hello ${username}` : "hello world"}</h2>
+        <Food></Food>
+        <Dbdb></Dbdb>
+
+        {/* <MapContainer></MapContainer> */}
+      </div>
+    );
+  }
 }
 
 export default App;
