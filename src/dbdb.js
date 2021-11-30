@@ -47,7 +47,7 @@ class Dbdb extends Component {
       // console.log(res.json());
       console.log(d);
       this?.setState({
-        data: d.title,
+        data: d.category_name,
       });
       // res.json();
     });
