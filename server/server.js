@@ -9,16 +9,14 @@ const mysql = require("mysql"); // mysql 모듈 사용
 var connection = mysql.createConnection({
   host: "127.0.0.1",
   port: "3306",
-  user: "root", //mysql의 id
-  password: "a70903", //mysql의 password
-  database: "opentutorials", //사용할 데이터베이스
+  user: "user2", //mysql의 id
+  password: "a12345", //mysql의 password
+  database: "eat", //사용할 데이터베이스
 });
-
-// connection.connect();
 
 connection.connect((err) => {
   if (err) {
-    console.log("error connecting" + err.stack);
+    console.log("error connecting " + err.stack);
     return;
   }
   console.log("success");
@@ -47,18 +45,26 @@ app.get("/m", (req, res) => {
 app.post("/api", (req, res) => {
   // const test = req.body.test;
   // console.log(req.body);
-  connection.query("SELECT title FROM topic", function (err, rows, fields) {
-    if (err) {
-      console.log("실패");
-      // console.log(err);
-    } else {
-      console.log("성공");
-      console.log(rows);
-      console.log(rows[0]);
-      res.send(rows);
-      // console.log(rows);
+  connection.query(
+    "SELECT category_name FROM foodCategory",
+    function (err, rows, fields) {
+      if (err) {
+        console.log("실패");
+        // console.log(err);
+      } else {
+        console.log("성공");
+        console.log(rows);
+        function getRandomInt(min, max) {
+          min = Math.ceil(min);
+          max = Math.floor(max);
+          return Math.floor(Math.random() * (max - min)) + min; //최댓값은 제외, 최솟값은 포함
+        }
+        // console.log(rows[0]);
+        res.send(rows[getRandomInt(0, rows.length)]);
+        // console.log(rows);
+      }
     }
-  });
+  );
 });
 
 app.post("/callbody", (req, res) => {
