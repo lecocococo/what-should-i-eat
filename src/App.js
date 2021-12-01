@@ -2,19 +2,12 @@ import logo from "./logo.svg";
 import "./App.css";
 import "./mapContainer";
 import "./randomSelect";
-import React, { Component } from "react";
+import React, { useState, useEffect, Component } from "react";
 import MapContainer from "./mapContainer";
-import { category } from "./randomSelect";
+// import { category } from "./randomSelect";
+import LoadingSpinner from "./loadingSpinner";
 import "./dbdb";
 import Dbdb from "./dbdb";
-
-// class Map extends Component{
-//   render(){
-//     return(
-//       <div></div>
-//     );
-//   }
-// }
 
 // class Food extends Component {
 //   render() {
@@ -31,51 +24,28 @@ import Dbdb from "./dbdb";
 //   }
 // }
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      username: null,
-    };
-  }
+function App() {
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+  }, []);
+  // const [loading, setLoading] = useState(true);
 
-  // submitId = () => {
-  //   const post = {
-  //     test: this.state.testbody,
-  //   };
+  // const { username } = this.state;
+  return loading ? (
+    <LoadingSpinner />
+  ) : (
+    <div className="App">
+      <h1>점심뭐먹지?</h1>
+      {/* <h2> {username ? `hello ${username}` : "hello world"}</h2> */}
+      {/* <Food></Food> */}
+      <Dbdb></Dbdb>
 
-  //   fetch("http://localhost:3001/api", {
-  //     method: "post", // 통신방법
-  //     headers: {
-  //       "content-type": "application/json",
-  //     },
-  //     body: JSON.stringify(post),
-  //   })
-  //     .then((res) => res.json())
-  //     .then((json) => {
-  //       this.setState({
-  //         testbody: json.text,
-  //       });
-  //     });
-  // };
-  // componentDidMount() {
-  //   fetch("http://localhost:3001/aa")
-  //     .then((res) => res.json())
-  //     .then((data) => this.setState({ username: data.username }));
-  // }
-  render() {
-    const { username } = this.state;
-    return (
-      <div className="App">
-        <h1>점심뭐먹지?</h1>
-        {/* <h2> {username ? `hello ${username}` : "hello world"}</h2> */}
-        {/* <Food></Food> */}
-        <Dbdb></Dbdb>
-
-        {/* <MapContainer></MapContainer> */}
-      </div>
-    );
-  }
+      {/* <MapContainer></MapContainer> */}
+    </div>
+  );
 }
 
 export default App;

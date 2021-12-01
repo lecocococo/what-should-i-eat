@@ -1,0 +1,18 @@
+.loading {
+  width: 200px;
+  height: 100px;
+  border: 1px solid silver;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -100px;
+  margin-top: -50px;
+
+  /* 자식의 위치를 요소배치 속성인 flex를 이용하여 정렬 */
+  display: flex;
+  justify-content: center; /*가로에서 가운데에 자식을 배치하겠다 */
+  align-items: center; /*로에서 가운데에 자식을 배치하겠다*/
+}
+/* .loading > h2{
+    
+} */
