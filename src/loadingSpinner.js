@@ -6,7 +6,7 @@ import "./loadingSpinner.css";
 const LoadingSpinner = (props) => {
   return (
     <div className="loading">
-      <p>로딩중입니다...</p>
+      <p>점심 나가서 먹을거 가테~</p>
       <CircularProgress color="secondary" />
     </div>
   );
