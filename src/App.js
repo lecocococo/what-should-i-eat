@@ -8,6 +8,9 @@ import MapContainer from "./mapContainer";
 import LoadingSpinner from "./loadingSpinner";
 import "./dbdb";
 import Dbdb from "./dbdb";
+import Modal from "./modal";
+import modalCss from "./modal.module.css";
+// import LifeCount from "./life_count";
 
 // class Food extends Component {
 //   render() {
@@ -33,7 +36,10 @@ function App() {
   }, []);
   // const [loading, setLoading] = useState(true);
 
-  // const { username } = this.state;
+  const [modalOn, setModalOn] = useState(false);
+  function onCall() {
+    setModalOn(!modalOn);
+  }
   return loading ? (
     <LoadingSpinner />
   ) : (
@@ -42,7 +48,8 @@ function App() {
       {/* <h2> {username ? `hello ${username}` : "hello world"}</h2> */}
       {/* <Food></Food> */}
       <Dbdb></Dbdb>
-
+      <button onClick={onCall}>START</button>
+      {modalOn ? <Modal message="Message"></Modal> : ""}
       {/* <MapContainer></MapContainer> */}
     </div>
   );
