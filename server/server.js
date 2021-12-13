@@ -1,9 +1,9 @@
 const express = require("express");
-const app = express();
+const app = express(); //express 프레임워크
 const PORT = process.env.PORT || 3001; // react의 기본값은 3000이니까 3000이 아닌 아무 수
 const cors = require("cors");
 // const db = require("./config/database");
-const bodyParser = require("body-parser");
+const bodyParser = require("body-parser"); //바디값을 분석하기위한 미들웨어
 const mysql = require("mysql"); // mysql 모듈 사용
 
 var connection = mysql.createConnection({
