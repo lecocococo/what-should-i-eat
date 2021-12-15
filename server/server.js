@@ -67,6 +67,26 @@ app.post("/api", (req, res) => {
   );
 });
 
+app.post("/category_list", (req, res) => {
+  // const test = req.body.test;
+  // console.log(req.body);
+  connection.query(
+    "SELECT category_name FROM foodCategory",
+    function (err, rows, fields) {
+      if (err) {
+        console.log("실패");
+        // console.log(err);
+      } else {
+        console.log("성공");
+        console.log(rows);
+        // console.log(rows[0]);
+        res.send(rows);
+        // console.log(rows);
+      }
+    }
+  );
+});
+
 app.post("/callbody", (req, res) => {
   console.log(req);
   console.log(res);
