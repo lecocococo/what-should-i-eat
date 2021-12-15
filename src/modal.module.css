@@ -16,7 +16,18 @@
   width: 40%;
   text-align: center;
   /* border-radius: 50%; */
-  background: bisque;
+  background: rgb(248, 229, 229);
   font-size: 20;
-  color: white;
+  color: rgb(189, 131, 60);
+  border: 1px solid black;
+}
+.child button {
+  text-align: left;
+  font-size: 20;
+  background-color: darksalmon;
+  border-radius: 15px;
+}
+.child > th,
+td {
+  text-align: left;
 }
