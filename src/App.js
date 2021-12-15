@@ -47,7 +47,7 @@ function App() {
       <h1>점심뭐먹지?</h1>
       {/* <h2> {username ? `hello ${username}` : "hello world"}</h2> */}
       {/* <Food></Food> */}
-      <Dbdb></Dbdb>
+      {/* <Dbdb></Dbdb> */}
       <button onClick={onCall}>START</button>
       {modalOn ? <Modal message="Message"></Modal> : ""}
       {/* <MapContainer></MapContainer> */}
