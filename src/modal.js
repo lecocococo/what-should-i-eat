@@ -11,13 +11,17 @@ function Modal(props) {
   let category_data = [];
 
   const call = () =>
-    fetch("http://localhost:3001/category_list", {
-      method: "post",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(),
-    }).then(async (result, error) => {
+    fetch(
+      "http://127.0.0.1:3001/category_list" &&
+        "http://192.168.55.219:3001/category_list",
+      {
+        method: "post",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(),
+      }
+    ).then(async (result, error) => {
       console.log(result);
       console.log(error);
       let list_data = await result.json();

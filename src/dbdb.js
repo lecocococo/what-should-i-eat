@@ -39,7 +39,7 @@ class Dbdb extends Component {
   //   this.setState({ life: this.state.life - 1 });
   // };
   onCall = () => {
-    fetch("http://localhost:3001/api", {
+    fetch("http://127.0.0.1:3001/api", {
       method: "post",
       headers: {
         "content-type": "application/json",
