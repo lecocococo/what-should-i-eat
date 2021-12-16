@@ -1,14 +1,16 @@
 import { createPortal } from "react-dom";
-import styles from "./modal.module.css";
 import $ from "jquery";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { category } from "./randomSelect";
 import Dbdb from "./dbdb";
+import styles from "./modal.module.css";
+import "./modal_btn.css";
 
 function Modal(props) {
   const { message } = props;
   let category_data = [];
-  let call = () =>
+
+  const call = () =>
     fetch("http://localhost:3001/category_list", {
       method: "post",
       headers: {
@@ -25,31 +27,55 @@ function Modal(props) {
       }
       console.log(category_data);
     });
+
+  const [query, setQuery] = useState([]);
+
+  const on_category_name_click = ({ list_data }) => {
+    setQuery((prevNumber) => prevNumber + list_data);
+  };
+
   useEffect(() => {
     call();
     setTimeout(function () {
-      var $listTbody = $(".category_list tbody");
+      // var $listTbody = $(".categorys ");
+
       console.log(category_data);
       console.log(Object.keys(category_data).length);
-      $listTbody.append("<tr>");
       for (let num = 0; num < category_data.length; num++) {
-        if (num / 8 === 1) {
-          $listTbody.append("</tr>");
-          $listTbody.append("<tr>");
-        }
-        $listTbody.append(
-          "<td><button>" + category_data[num] + "</button></td>"
+        let d = category_data[num];
+
+        $(".categorys").append(
+          "<button id=" + d + ">" + category_data[num] + "</button>"
         );
+        console.log(d);
       }
-    }, 50);
+
+      $(".categorys button").on("click", function () {
+        console.log($(this).attr("id"));
+        let del_box = "del_box";
+        $("#ban").append(
+          '<span className={"del_box"}>' +
+            $(this).attr("id") +
+            "<button>" +
+            "X" +
+            "</button>" +
+            "</span>"
+        );
+        // $("#ban span").css("border", "2px solid white");
+      });
+
+      // $(".del_box").attr("class", "ban_box");
+    }, 100);
   }, []);
+
   return createPortal(
     <div className={styles.parent}>
       <div className={styles.child}>
         <h2>먹고 싶지 않은 카테고리 선택</h2>
-        <table className="category_list">
-          <tbody></tbody>
-        </table>
+        <div className={"categorys"}></div>
+        <div id={"ban"}>
+          <p>제외된 항목: </p>
+        </div>
         <Dbdb></Dbdb>
         {/* <p>{props.message}</p> */}
       </div>
