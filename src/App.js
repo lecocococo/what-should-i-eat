@@ -10,6 +10,7 @@ import "./dbdb";
 import Dbdb from "./dbdb";
 import Modal from "./modal";
 import modalCss from "./modal.module.css";
+import { category } from "./randomSelect";
 // import LifeCount from "./life_count";
 
 // class Food extends Component {
@@ -29,15 +30,43 @@ import modalCss from "./modal.module.css";
 
 function App() {
   const [loading, setLoading] = useState(true);
+
+  const [category_data, setCategory_data] = useState([]);
+  let list = [];
+  const call = () =>
+    fetch(
+      "http://127.0.0.1:3001/category_list" &&
+        "http://192.168.55.219:3001/category_list",
+      {
+        method: "post",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(),
+      }
+    ).then(async (result, error) => {
+      console.log(result);
+      console.log(error);
+      let list_data = await result.json();
+      console.log(list_data);
+      for (let i = 0; i < list_data.length; i++) {
+        list[i] = list_data[i].category_name;
+      }
+      console.log(list);
+      setCategory_data(list);
+      console.log(category_data);
+    });
+
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
     }, 2000);
   }, []);
-  // const [loading, setLoading] = useState(true);
 
   const [modalOn, setModalOn] = useState(false);
+
   function onCall() {
+    call();
     setModalOn(!modalOn);
   }
   return loading ? (
@@ -45,12 +74,9 @@ function App() {
   ) : (
     <div className="App">
       <h1>점심뭐먹지?</h1>
-      {/* <h2> {username ? `hello ${username}` : "hello world"}</h2> */}
-      {/* <Food></Food> */}
       {/* <Dbdb></Dbdb> */}
       <button onClick={onCall}>START</button>
-      {modalOn ? <Modal message="Message"></Modal> : ""}
-      {/* <MapContainer></MapContainer> */}
+      {modalOn ? <Modal category_data={category_data}></Modal> : ""}
     </div>
   );
 }
