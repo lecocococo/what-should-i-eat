@@ -20,7 +20,7 @@
 }
 
 /* 제외된 항목 컨테이너 */
-#ban {
+.ban {
   width: 70%;
   margin-top: 3px;
   border: 2px solid white;
@@ -33,7 +33,7 @@
   align-content: center;
 }
 /* 제외된 항목들 */
-#ban span {
+.ban span {
   border: 2px solid white;
   background-color: wheat;
   padding: 2%;
