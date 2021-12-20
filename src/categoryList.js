@@ -10,12 +10,22 @@ const onBanned = (e) => {
     (ban.innerHTML +=
       '<span class="del_box">' +
       e.target.id +
-      "<button>" +
+      '<button class="del" >' +
       "X" +
       "</button>" +
       "</span>")
   );
-  return;
+  const a = document.querySelectorAll(".del_box");
+  for (let i = 0; i < a.length; i++) {
+    const item = a.item(i);
+    item.addEventListener("click", function (e) {
+      // console.log(e.path[1].childNodes[0].data);
+      item.remove();
+    });
+  }
+};
+const deleteBanned = (e) => {
+  console.log("sdfsdf");
 };
 function Button({ id }) {
   return (
