@@ -45,8 +45,9 @@ app.get("/m", (req, res) => {
 app.post("/api", (req, res) => {
   // const test = req.body.test;
   // console.log(req.body);
+  // const ban = '("중식", "라면", "분식", "일식", "치킨", "파스타")';
   connection.query(
-    "SELECT category_name FROM foodCategory",
+    "SELECT category_name FROM foodCategory WHERE category_name not in" /*+ ban*/,
     function (err, rows, fields) {
       if (err) {
         console.log("실패");
