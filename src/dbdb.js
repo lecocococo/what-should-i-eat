@@ -1,13 +1,14 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { connect } from "react-redux";
+import { deleteCount } from "./reducer/category_state";
 // import LifeCount from "./life_count";
 
+const mapStateToProps = (state) => ({ ban_list: state.test.category_data });
 class Dbdb extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      testbody: "",
-      data: "",
       life: 3,
     };
   }
@@ -39,12 +40,24 @@ class Dbdb extends Component {
   //   this.setState({ life: this.state.life - 1 });
   // };
   onCall = () => {
+    // console.log(
+    //   // document.querySelector(".del_box").childNodes[0].childNodes.data
+    //   document.querySelectorAll(".del_box"),
+    //   this.state.data
+    // );
+    // let arr = document.querySelectorAll(".del_box");
+    // for (let i = 0; i < arr.length; i++) {}
+
+    // 금지된 항목 props에 잘 들어옴
+    console.log(this.props.ban_list);
     fetch("http://127.0.0.1:3001/api", {
       method: "post",
       headers: {
         "content-type": "application/json",
       },
-      body: JSON.stringify(),
+      body: JSON.stringify({
+        ban_list: this.props.ban_list,
+      }),
     }).then(async (res, error) => {
       console.log(res);
       console.log(error);
@@ -102,5 +115,5 @@ class Dbdb extends Component {
 //   const res = axiosSet.get("/api");
 //   console.log(res.data);
 // }
-
-export default Dbdb;
+export default connect(mapStateToProps)(Dbdb);
+// export default Dbdb;
