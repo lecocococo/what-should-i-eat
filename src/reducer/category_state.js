@@ -9,7 +9,7 @@ export const intialState = {
 // 액션 생성함수 정의
 export const deleteCount = (category_data) => ({ type: ACT, category_data });
 // 리듀서 작성
-const test = (state = intialState, action) => {
+const category = (state = intialState, action) => {
   switch (action.type) {
     case ACT:
       return {
@@ -21,4 +21,4 @@ const test = (state = intialState, action) => {
   }
 };
 
-export default test;
+export default category;

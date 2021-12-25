@@ -1,8 +1,10 @@
 import { combineReducers, createStore } from "redux";
-import test from "./category_state";
+import category from "./category_state";
+import modal from "./modal_state";
 
 const rootReducer = combineReducers({
-  test,
+  category,
+  modal,
 });
 // 리덕스 개발자도구 적용
 const devTools =
