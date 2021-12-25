@@ -1,32 +1,49 @@
 .parent {
-  /* position: "fixed";
-  bottom: 30;
-  left: 0; */
+  position: "fixed";
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 11111;
   width: 100%;
-  /* height: 0%; */
+  height: 100%;
   /* border: 1px solid sienna; */
   /* border-radius: 20%; */
   /* visibility: hidden; */
-  margin-top: 5%;
-  border: 1px solid black;
+  /* margin-top: 5%; */
+  /* border: 1px solid black; */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
+.exit {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
+  align-items: flex-end;
+}
+.exit > button {
+  margin-right: 5%;
+}
 
 .child {
-  width: 40%;
+  /* absolute는 position: static 속성을 가지고 있지 않은 조상을 기준으로 움직임 */
+  position: absolute;
+  top: 15%;
+  width: 35%;
+  height: 60%;
   text-align: center;
   border-radius: 15px;
   background: rgb(248, 229, 229);
   font-size: 20;
   color: rgb(189, 131, 60);
-  border: 4px solid black;
+  border: 1px solid black;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
 }
 

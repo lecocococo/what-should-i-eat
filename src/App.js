@@ -10,7 +10,11 @@ import "./dbdb";
 import Dbdb from "./dbdb";
 import Modal from "./modal";
 import modalCss from "./modal.module.css";
-import { category } from "./randomSelect";
+
+// redux사용
+import { useDispatch, useSelector } from "react-redux";
+import { changeModalState } from "./reducer/modal_state";
+// import store from "./reducer";
 // import LifeCount from "./life_count";
 
 // class Food extends Component {
@@ -30,8 +34,8 @@ import { category } from "./randomSelect";
 
 function App() {
   const [loading, setLoading] = useState(true);
-
   const [category_data, setCategory_data] = useState([]);
+
   let list = [];
   const call = () =>
     fetch(
@@ -59,15 +63,20 @@ function App() {
 
   useEffect(() => {
     setTimeout(() => {
+      call();
       setLoading(false);
     }, 2000);
   }, []);
+  //redux를 이용하여 state저장
+  const dispatch = useDispatch();
+  const modal_state = useSelector((state) => state.modal.modal);
 
-  const [modalOn, setModalOn] = useState(false);
-
-  function onCall() {
-    call();
-    setModalOn(!modalOn);
+  function onCall(e) {
+    // call();
+    //모달창 상태를 저장
+    console.log(modal_state);
+    dispatch(changeModalState(modal_state));
+    console.log(modal_state);
   }
   return loading ? (
     <LoadingSpinner />
@@ -76,7 +85,7 @@ function App() {
       <h1>점심뭐먹지?</h1>
       {/* <Dbdb></Dbdb> */}
       <button onClick={onCall}>START</button>
-      {modalOn ? <Modal category_data={category_data}></Modal> : ""}
+      {modal_state ? <Modal category_data={category_data}></Modal> : ""}
     </div>
   );
 }

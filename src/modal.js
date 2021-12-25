@@ -5,45 +5,10 @@ import Dbdb from "./dbdb";
 import styles from "./modal.module.css";
 import "./modal_btn.css";
 import ButtonList from "./categoryList";
+import { useDispatch, useSelector } from "react-redux";
+import { changeModalState } from "./reducer/modal_state";
 
 function Modal({ category_data }) {
-  // let [category_data, setCategory_data] = useState([]);
-  // let list = [];
-  // const call = () =>
-  //   fetch(
-  //     "http://127.0.0.1:3001/category_list" &&
-  //       "http://192.168.55.219:3001/category_list",
-  //     {
-  //       method: "post",
-  //       headers: {
-  //         "content-type": "application/json",
-  //       },
-  //       body: JSON.stringify(),
-  //     }
-  //   ).then(async (result, error) => {
-  //     console.log(result);
-  //     console.log(error);
-  //     let list_data = await result.json();
-  //     console.log(list_data);
-  //     for (let i = 0; i < list_data.length; i++) {
-  //       list[i] = list_data[i].category_name;
-  //     }
-
-  //     // setCategory_data(list);
-  //     // console.log(category_data);
-  //   });
-
-  // // let [category_data, setCategory_data] = useState([]);
-  // useEffect(() => {
-  //   call();
-  //   setCategory_data(category_data.concat(list));
-  //   console.log(category_data);
-  // }, []);
-  // console.log(category_data);
-  // console.log(category_data);
-  // useEffect(() => {
-  //   call();
-  // });
   // Jquery사용한 버전
   // useEffect(() => {
   //   call();
@@ -82,20 +47,36 @@ function Modal({ category_data }) {
   //     // $(".del_box").attr("class", "ban_box");
   //   }, 100);
   // }, []);
+  const dispatch = useDispatch();
+  const modal_state = useSelector((state) => state.modal.modal);
+  const [modalOn, setModalOn] = useState(modal_state);
+
+  const handleModal = (e) => {
+    dispatch(changeModalState(modal_state));
+    setModalOn(false);
+  };
   return createPortal(
-    <div className={styles.parent}>
-      <div className={styles.child}>
-        <h2>먹고 싶지 않은 카테고리 선택</h2>
-        <div className={"categorys"}>
-          <ButtonList category={category_data}></ButtonList>
+    modalOn ? (
+      <div className={styles.parent} onClick={handleModal}>
+        {/* event.stopPropagation()이벤트가 캡처링/버블링 단계에서 더 이상 전파되지 않도록 방지 */}
+        <div className={styles.child} onClick={(e) => e.stopPropagation()}>
+          <div className={styles.exit}>
+            <button onClick={handleModal}>X</button>
+          </div>
+          <h2>먹고 싶지 않은 카테고리 선택</h2>
+          <div className={"categorys"}>
+            <ButtonList category={category_data}></ButtonList>
+          </div>
+          <div className={"ban"}>
+            <p>제외된 항목: </p>
+          </div>
+          <Dbdb></Dbdb>
+          {/* <p>{props.message}</p> */}
         </div>
-        <div className={"ban"}>
-          <p>제외된 항목: </p>
-        </div>
-        <Dbdb></Dbdb>
-        {/* <p>{props.message}</p> */}
       </div>
-    </div>,
+    ) : (
+      ""
+    ),
     document.querySelector("#modal")
     // document.getElementById("modal")
   );
