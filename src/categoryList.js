@@ -8,7 +8,7 @@ const ban_list = [];
 function Button({ id }) {
   //
   const dispatch = useDispatch();
-  const c_data = useSelector((state) => state.test.category_data);
+  const c_data = useSelector((state) => state.category.category_data);
 
   const onBanned = (e) => {
     const ban = document.querySelector(".ban");
