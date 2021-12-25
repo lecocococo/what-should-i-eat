@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { connect } from "react-redux";
-import { deleteCount } from "./reducer/category_state";
 // import LifeCount from "./life_count";
 
-const mapStateToProps = (state) => ({ ban_list: state.test.category_data });
+const mapStateToProps = (state) => ({ ban_list: state.category.category_data });
+
 class Dbdb extends Component {
   constructor(props) {
     super(props);
