@@ -2,7 +2,6 @@ const express = require("express");
 const app = express(); //express 프레임워크
 const PORT = process.env.PORT || 3001; // react의 기본값은 3000이니까 3000이 아닌 아무 수
 const cors = require("cors");
-// const db = require("./config/database");
 const bodyParser = require("body-parser"); //바디값을 분석하기위한 미들웨어
 const mysql = require("mysql"); // mysql 모듈 사용
 
@@ -74,29 +73,22 @@ app.post("/api", (req, res) => {
           max = Math.floor(max);
           return Math.floor(Math.random() * (max - min)) + min; //최댓값은 제외, 최솟값은 포함
         }
-        // console.log(rows[0]);
         res.send(rows[getRandomInt(0, rows.length)]);
-        // console.log(rows);
       }
     }
   );
 });
 
 app.post("/category_list", (req, res) => {
-  // const test = req.body.test;
-  // console.log(req.body);
   connection.query(
     "SELECT category_name FROM foodCategory",
     function (err, rows, fields) {
       if (err) {
         console.log("실패");
-        // console.log(err);
       } else {
         console.log("성공");
         console.log(rows);
-        // console.log(rows[0]);
         res.send(rows);
-        // console.log(rows);
       }
     }
   );

@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { connect } from "react-redux";
-// import LifeCount from "./life_count";
 
 const mapStateToProps = (state) => ({ ban_list: state.category.category_data });
 
@@ -36,18 +35,7 @@ class Dbdb extends Component {
       });
   };
 
-  // decrease = () => {
-  //   this.setState({ life: this.state.life - 1 });
-  // };
   onCall = () => {
-    // console.log(
-    //   // document.querySelector(".del_box").childNodes[0].childNodes.data
-    //   document.querySelectorAll(".del_box"),
-    //   this.state.data
-    // );
-    // let arr = document.querySelectorAll(".del_box");
-    // for (let i = 0; i < arr.length; i++) {}
-
     // 금지된 항목 props에 잘 들어옴
     console.log(this.props.ban_list);
     fetch("http://127.0.0.1:3001/api", {
@@ -62,7 +50,6 @@ class Dbdb extends Component {
       console.log(res);
       console.log(error);
       const d = await res.json();
-      // console.log(res.json());
       console.log(d);
       this?.setState({
         data: d.category_name,
@@ -73,19 +60,6 @@ class Dbdb extends Component {
         this.setState({ life: 3 });
       }
     });
-    // .then(async (json, d) => {
-    //   console.log("1");
-    //   console.log(d);
-    //   console.log(json);
-    //   this?.setState({
-    //     data: json.title,
-    //   });
-    //   console.log(this.data);
-    // })
-    // .catch((error, d) => {
-    //   console.log(d);
-    //   console.log(error);
-    // });
   };
 
   render() {
@@ -116,4 +90,3 @@ class Dbdb extends Component {
 //   console.log(res.data);
 // }
 export default connect(mapStateToProps)(Dbdb);
-// export default Dbdb;

@@ -14,8 +14,6 @@ import modalCss from "./modal.module.css";
 // redux사용
 import { useDispatch, useSelector } from "react-redux";
 import { changeModalState } from "./reducer/modal_state";
-// import store from "./reducer";
-// import LifeCount from "./life_count";
 
 // class Food extends Component {
 //   render() {
@@ -72,7 +70,6 @@ function App() {
   const modal_state = useSelector((state) => state.modal.modal);
 
   function onCall(e) {
-    // call();
     //모달창 상태를 저장
     console.log(modal_state);
     dispatch(changeModalState(modal_state));

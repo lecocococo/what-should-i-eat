@@ -42,8 +42,6 @@ function Button({ id }) {
     }
   };
 
-  // setBanList(list);
-
   return (
     <button id={id} onClick={onBanned}>
       {id}
@@ -51,7 +49,6 @@ function Button({ id }) {
   );
 }
 function ButtonList({ category }) {
-  // const [banList, setBanList] = useState([]);
   return (
     <div>
       {category.map((data, index) => (

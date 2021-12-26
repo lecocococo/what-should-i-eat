@@ -79,7 +79,6 @@ function Modal({ category_data }) {
           dispatch(deleteCount(ban_list));
         });
       }
-      // ban_list.push(e.target.id);
     }
   }, []);
   return createPortal(
@@ -98,14 +97,12 @@ function Modal({ category_data }) {
             <p>제외된 항목: </p>
           </div>
           <Dbdb></Dbdb>
-          {/* <p>{props.message}</p> */}
         </div>
       </div>
     ) : (
       ""
     ),
     document.querySelector("#modal")
-    // document.getElementById("modal")
   );
 }
 export default Modal;
