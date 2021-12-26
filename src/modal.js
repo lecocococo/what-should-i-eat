@@ -7,6 +7,7 @@ import "./modal_btn.css";
 import ButtonList from "./categoryList";
 import { useDispatch, useSelector } from "react-redux";
 import { changeModalState } from "./reducer/modal_state";
+import { deleteCount } from "./reducer/category_state";
 
 function Modal({ category_data }) {
   // Jquery사용한 버전
@@ -49,12 +50,38 @@ function Modal({ category_data }) {
   // }, []);
   const dispatch = useDispatch();
   const modal_state = useSelector((state) => state.modal.modal);
+  let ban_list = useSelector((state) => state.category.category_data);
+
   const [modalOn, setModalOn] = useState(modal_state);
 
   const handleModal = (e) => {
     dispatch(changeModalState(modal_state));
     setModalOn(false);
   };
+  useEffect(() => {
+    const ban = document.querySelector(".ban");
+    // store내의 금지된 항목의 상태를 가져와서 모달창을 다시 열었을때도 금지된 항목을 볼수 있도록함
+    for (let i = 0; i < ban_list.length; i++) {
+      ban.innerHTML +=
+        '<span class="del_box">' +
+        ban_list[i] +
+        '<button class="del" >' +
+        "X" +
+        "</button>" +
+        "</span>";
+      const a = document.querySelectorAll(".del_box");
+      for (let i = 0; i < a.length; i++) {
+        const item = a.item(i);
+        item.addEventListener("click", function (e) {
+          console.log(e.path[1].childNodes[0].data);
+          item.remove();
+          ban_list.splice(ban_list.indexOf(e.path[1].childNodes[0].data), 1);
+          dispatch(deleteCount(ban_list));
+        });
+      }
+      // ban_list.push(e.target.id);
+    }
+  }, []);
   return createPortal(
     modalOn ? (
       <div className={styles.parent} onClick={handleModal}>
