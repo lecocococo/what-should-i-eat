@@ -54,9 +54,17 @@ function Modal({ category_data }) {
 
   const [modalOn, setModalOn] = useState(modal_state);
 
+  //배뎔을 원래대로 돌려주는 함수
+  const handleBackground = () => {
+    let background = document.querySelector("#root");
+    background.style.background = "";
+    background.style.opacity = "";
+  };
+
   const handleModal = (e) => {
     dispatch(changeModalState(modal_state));
     setModalOn(false);
+    handleBackground();
   };
   useEffect(() => {
     const ban = document.querySelector(".ban");

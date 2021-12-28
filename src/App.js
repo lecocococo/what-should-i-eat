@@ -59,6 +59,13 @@ function App() {
       console.log(category_data);
     });
 
+  //모달창이 떳을경우 배경을 흐리고 어둡게 만들어 주는 함수
+  const handleBackground = () => {
+    let background = document.querySelector("#root");
+    background.style.background = "rgba(0, 0, 0, 0.2)";
+    background.style.opacity = "0.5";
+  };
+
   useEffect(() => {
     setTimeout(() => {
       call();
@@ -74,6 +81,7 @@ function App() {
     console.log(modal_state);
     dispatch(changeModalState(modal_state));
     console.log(modal_state);
+    handleBackground();
   }
   return loading ? (
     <LoadingSpinner />
