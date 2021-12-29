@@ -15,6 +15,9 @@ import modalCss from "./modal.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { changeModalState } from "./reducer/modal_state";
 
+//react-spring 사용
+import { useSprings, animated, useSpring, config } from "react-spring";
+
 // class Food extends Component {
 //   render() {
 //     // 랜덤하게 하는것을 메서드화
@@ -33,6 +36,15 @@ import { changeModalState } from "./reducer/modal_state";
 function App() {
   const [loading, setLoading] = useState(true);
   const [category_data, setCategory_data] = useState([]);
+  const styles = useSpring({
+    loop: { reverse: true },
+    config: config.wobbly /*{ friction: 5 }*/,
+    from: { rotateZ: -20 },
+    to: { rotateZ: 20 },
+    // from: { x: -100 },
+    // to: { x: 100 },
+    // reset: false,
+  });
 
   let list = [];
   const call = () =>
@@ -87,8 +99,10 @@ function App() {
     <LoadingSpinner />
   ) : (
     <div className="App">
-      <h1>점심뭐먹지?</h1>
-      {/* <Dbdb></Dbdb> */}
+      <animated.div style={styles}>
+        <h1>점심뭐먹지?</h1>
+        {/* <Dbdb></Dbdb> */}
+      </animated.div>
       <button onClick={onCall}>START</button>
       {modal_state ? <Modal category_data={category_data}></Modal> : ""}
     </div>
