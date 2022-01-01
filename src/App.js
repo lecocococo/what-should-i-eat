@@ -17,6 +17,9 @@ import { changeModalState } from "./reducer/modal_state";
 import { useSprings, animated, useSpring, config } from "react-spring";
 import useMeasure from "react-use-measure";
 
+//react-transition-group 사용
+import { CSSTransition } from "react-transition-group";
+
 // class Food extends Component {
 //   render() {
 //     // 랜덤하게 하는것을 메서드화
@@ -80,11 +83,13 @@ function App() {
     });
 
   //모달창이 떳을경우 배경을 흐리고 어둡게 만들어 주는 함수
-  const handleBackground = () => {
-    let background = document.querySelector("#root");
-    background.style.background = "rgba(0, 0, 0, 0.2)";
-    background.style.opacity = "0.5";
-  };
+  // const handleBackground = () => {
+  //   // document.querySelector("#root").style.height = "100%";
+  //   // document.querySelector("#modal").style.height = "100%";
+  //   let background = document.querySelector("#root");
+  //   background.style.background = "rgba(0, 0, 0, 0.2)";
+  //   background.style.opacity = "0.5";
+  // };
 
   useEffect(() => {
     setTimeout(() => {
@@ -102,7 +107,7 @@ function App() {
       toggle(open);
       //모달창 상태를 저장
       dispatch(changeModalState(modal_state));
-      handleBackground();
+      // handleBackground();
     }, 1100);
   }
   return loading ? (
@@ -120,8 +125,16 @@ function App() {
         <animated.div className={styles.content}>
           {prop.width.to((x) => Math.floor((x * 100) / width) + "%")}
         </animated.div>
-        {modal_state ? <Modal category_data={category_data}></Modal> : ""}
+        {/* {modal_state ? <Modal category_data={category_data}></Modal> : ""} */}
       </div>
+      <CSSTransition
+        in={modal_state}
+        timeout={300}
+        classNames="categoryModal"
+        unmountOnExit
+      >
+        <Modal category_data={category_data}></Modal>
+      </CSSTransition>
     </div>
   );
 }

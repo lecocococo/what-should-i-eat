@@ -7,6 +7,25 @@
   height: 100vh;
 }
 
+.categoryModal-enter {
+  opacity: 0;
+}
+.categoryModal-enter-active,
+.categoryModal-enter-done {
+  opacity: 1;
+  background: rgba(0, 0, 0, 0.2);
+  /* background-color: royalblue; */
+  transition: opacity 300ms;
+}
+.categoryModal-exit {
+  opacity: 1;
+}
+.categoryModal-exit-active {
+  opacity: 0;
+  background: white;
+  transition: opacity 300ms;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
