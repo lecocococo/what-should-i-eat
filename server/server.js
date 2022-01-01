@@ -47,7 +47,10 @@ app.post("/api", (req, res) => {
   let ban = req.body.ban_list;
 
   // sql에 집어 넣기위한 처리
-  let li = "(";
+  let li = "";
+  if (ban.length !== 0) {
+    li += "WHERE category_name not in (";
+  }
   for (let i = 0; i < ban.length; i++) {
     // () 안에 ""이 있어야 하기 때문에 아래와 같이 함
     li += '"' + ban[i] + '"';
@@ -56,11 +59,13 @@ app.post("/api", (req, res) => {
       li += ",";
     }
   }
-  li += ")";
+  if (ban.length !== 0) {
+    li += ")";
+  }
   console.log(li);
 
   connection.query(
-    "SELECT category_name FROM foodCategory WHERE category_name not in" + li,
+    "SELECT category_name FROM foodCategory " + li,
     function (err, rows, fields) {
       if (err) {
         console.log("실패");
