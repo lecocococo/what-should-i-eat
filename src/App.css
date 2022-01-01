@@ -22,7 +22,6 @@
 }
 .categoryModal-exit-active {
   opacity: 0;
-  background: white;
   transition: opacity 300ms;
 }
 
