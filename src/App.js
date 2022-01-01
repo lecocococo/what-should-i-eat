@@ -109,9 +109,11 @@ function App() {
     <LoadingSpinner />
   ) : (
     <div className="App">
-      <animated.div className={styles.title} style={style}>
-        <h1>점심뭐먹지?</h1>
-      </animated.div>
+      <div className={styles.title}>
+        <h1 style={{ marginRight: "2.5%" }}>점심뭐먹지</h1>
+        <animated.h1 style={style}>?</animated.h1>
+      </div>
+
       <button onClick={onCall}>START</button>
       <div ref={ref} className={styles.main} onClick={() => toggle(!open)}>
         <animated.div className={styles.fill} style={prop} />
