@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { connect } from "react-redux";
+import Swal from "sweetalert2";
 
 const mapStateToProps = (state) => ({ ban_list: state.category.category_data });
 
@@ -56,7 +57,22 @@ class Dbdb extends Component {
       });
       this.setState({ life: this.state.life - 1 });
       if (this.state.life === 0) {
-        alert("고민하지마세요!!!");
+        Swal.fire({
+          icon: "error",
+          title: "고민하지마세요...",
+          text: "카테고리와 음식을 조금 더 금지 시켜 주세요...",
+          width: 600,
+          padding: "3em",
+          color: "#716add",
+          background:
+            "url(https://cdn.pixabay.com/photo/2020/02/20/17/57/flower-4865379_960_720.png) #fff ",
+          footer: "",
+          backdrop: `
+            rgba(0,0,123,0.4)
+            
+            no-repeat
+            `,
+        });
         this.setState({ life: 3 });
       }
     });

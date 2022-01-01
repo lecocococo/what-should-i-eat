@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { connect } from "react-redux";
 import { deleteCount } from "./reducer/category_state";
+import Swal from "sweetalert2";
 
 const ban_list = [];
 
@@ -38,7 +39,21 @@ function Button({ id }) {
       ban_list.push(e.target.id);
       // dispatch();
     } else {
-      alert("이미 먹고싶지 않은 항목입니다.");
+      Swal.fire({
+        title: "이미 먹고싶지 않은 항목입니다!",
+        // text: "",
+        width: 600,
+        padding: "3em",
+        color: "#716add",
+        background:
+          "url(https://cdn.pixabay.com/photo/2020/02/20/17/57/flower-4865379_960_720.png) #fff ",
+        footer: "",
+        backdrop: `
+          rgba(0,0,123,0.4)
+          
+          no-repeat
+          `,
+      });
     }
   };
 
