@@ -104,9 +104,11 @@ function App() {
   function onCall(e) {
     toggle(!open);
     setTimeout(() => {
-      toggle(open);
       //모달창 상태를 저장
       dispatch(changeModalState(modal_state));
+      setTimeout(() => {
+        toggle(open);
+      }, 300);
       // handleBackground();
     }, 1100);
   }
