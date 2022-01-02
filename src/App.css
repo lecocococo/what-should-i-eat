@@ -6,7 +6,11 @@
   flex-direction: column;
   height: 100vh;
 }
-
+.lunch {
+  animation: bounceIn;
+  animation-duration: 2.5s;
+  animation-iteration-count: infinite;
+}
 .categoryModal-enter {
   opacity: 0;
 }

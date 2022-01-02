@@ -7,6 +7,7 @@ import MapContainer from "./mapContainer";
 import LoadingSpinner from "./loadingSpinner";
 import "./dbdb";
 import Modal from "./modal";
+import Modalmobile from "./modal_mobile";
 import styles from "./styles.module.css";
 
 // redux사용
@@ -19,6 +20,12 @@ import useMeasure from "react-use-measure";
 
 //react-transition-group 사용
 import { CSSTransition } from "react-transition-group";
+
+// react responsive 사용
+import { useMediaQuery } from "react-responsive";
+
+// animate.css 사용
+import "animate.css";
 
 // class Food extends Component {
 //   render() {
@@ -44,9 +51,6 @@ function App() {
     config: config.wobbly /*{ friction: 5 }*/,
     from: { rotateZ: -20 },
     to: { rotateZ: 20 },
-    // from: { x: -100 },
-    // to: { x: 100 },
-    // reset: false,
   });
 
   const [open, toggle] = useState(false);
@@ -57,21 +61,19 @@ function App() {
     config: { duration: 1000 },
   });
 
-  //
+  // react-responsive for mobile
+  const isMobileDevice = useMediaQuery({ query: "(max-width: 900px)" });
 
+  //DB로 부터 카테고리를 받아오는 함수
   let list = [];
   const call = () =>
-    fetch(
-      "http://127.0.0.1:3001/category_list" &&
-        "http://192.168.55.219:3001/category_list",
-      {
-        method: "post",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(),
-      }
-    ).then(async (result, error) => {
+    fetch("http://127.0.0.1:3001/category_list", {
+      method: "post",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(),
+    }).then(async (result, error) => {
       console.log(result);
       console.log(error);
       let list_data = await result.json();
@@ -117,7 +119,9 @@ function App() {
   ) : (
     <div className="App">
       <div className={styles.title}>
-        <h1 style={{ marginRight: "2.5%" }}>점심뭐먹지</h1>
+        <h1 className="lunch" style={{ marginRight: "2.5%" }}>
+          점심뭐먹지
+        </h1>
         <animated.h1 style={style}>?</animated.h1>
       </div>
 
@@ -127,7 +131,6 @@ function App() {
         <animated.div className={styles.content}>
           {prop.width.to((x) => Math.floor((x * 100) / width) + "%")}
         </animated.div>
-        {/* {modal_state ? <Modal category_data={category_data}></Modal> : ""} */}
       </div>
       <CSSTransition
         in={modal_state}
@@ -135,7 +138,11 @@ function App() {
         classNames="categoryModal"
         unmountOnExit
       >
-        <Modal category_data={category_data}></Modal>
+        {isMobileDevice ? (
+          <Modalmobile category_data={category_data}></Modalmobile>
+        ) : (
+          <Modal category_data={category_data}></Modal>
+        )}
       </CSSTransition>
     </div>
   );
