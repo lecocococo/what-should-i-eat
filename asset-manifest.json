@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/what-should-i-eat/static/css/main.1935152f.chunk.css",
+    "main.js": "/what-should-i-eat/static/js/main.08b11eaa.chunk.js",
+    "main.js.map": "/what-should-i-eat/static/js/main.08b11eaa.chunk.js.map",
+    "runtime-main.js": "/what-should-i-eat/static/js/runtime-main.9e4dbb9b.js",
+    "runtime-main.js.map": "/what-should-i-eat/static/js/runtime-main.9e4dbb9b.js.map",
+    "static/css/2.a1596f27.chunk.css": "/what-should-i-eat/static/css/2.a1596f27.chunk.css",
+    "static/js/2.f1e86df1.chunk.js": "/what-should-i-eat/static/js/2.f1e86df1.chunk.js",
+    "static/js/2.f1e86df1.chunk.js.map": "/what-should-i-eat/static/js/2.f1e86df1.chunk.js.map",
+    "static/js/3.ada138c3.chunk.js": "/what-should-i-eat/static/js/3.ada138c3.chunk.js",
+    "static/js/3.ada138c3.chunk.js.map": "/what-should-i-eat/static/js/3.ada138c3.chunk.js.map",
+    "index.html": "/what-should-i-eat/index.html",
+    "static/css/2.a1596f27.chunk.css.map": "/what-should-i-eat/static/css/2.a1596f27.chunk.css.map",
+    "static/css/main.1935152f.chunk.css.map": "/what-should-i-eat/static/css/main.1935152f.chunk.css.map",
+    "static/js/2.f1e86df1.chunk.js.LICENSE.txt": "/what-should-i-eat/static/js/2.f1e86df1.chunk.js.LICENSE.txt",
+    "static/media/logo.6ce24c58.svg": "/what-should-i-eat/static/media/logo.6ce24c58.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.9e4dbb9b.js",
+    "static/css/2.a1596f27.chunk.css",
+    "static/js/2.f1e86df1.chunk.js",
+    "static/css/main.1935152f.chunk.css",
+    "static/js/main.08b11eaa.chunk.js"
+  ]
+}
