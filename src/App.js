@@ -67,7 +67,7 @@ function App() {
   //DB로 부터 카테고리를 받아오는 함수
   let list = [];
   const call = () =>
-    fetch("http://127.0.0.1:3001/category_list", {
+    fetch("http://192.168.55.219:3001/category_list", {
       method: "post",
       headers: {
         "content-type": "application/json",

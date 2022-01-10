@@ -39,7 +39,7 @@ class Dbdb extends Component {
   onCall = () => {
     // 금지된 항목 props에 잘 들어옴
     console.log(this.props.ban_list);
-    fetch("http://127.0.0.1:3001/api", {
+    fetch("http://192.168.55.219:3001/api", {
       method: "post",
       headers: {
         "content-type": "application/json",
