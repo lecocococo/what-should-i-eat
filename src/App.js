@@ -27,21 +27,6 @@ import { useMediaQuery } from "react-responsive";
 // animate.css 사용
 import "animate.css";
 
-// class Food extends Component {
-//   render() {
-//     // 랜덤하게 하는것을 메서드화
-//     function getRandomInt(min, max) {
-//       min = Math.ceil(min);
-//       max = Math.floor(max);
-//       return Math.floor(Math.random() * (max - min)) + min; //최댓값은 제외, 최솟값은 포함
-//     }
-
-//     // 랜덤을 변수로
-//     // let select = category[Math.floor(Math.random() * category.length)];
-//     return <p>{category[getRandomInt(0, category.length)]}</p>;
-//   }
-// }
-
 function App() {
   const [loading, setLoading] = useState(true);
   const [category_data, setCategory_data] = useState([]);
@@ -83,15 +68,6 @@ function App() {
       }
       setCategory_data(list);
     });
-
-  //모달창이 떳을경우 배경을 흐리고 어둡게 만들어 주는 함수
-  // const handleBackground = () => {
-  //   // document.querySelector("#root").style.height = "100%";
-  //   // document.querySelector("#modal").style.height = "100%";
-  //   let background = document.querySelector("#root");
-  //   background.style.background = "rgba(0, 0, 0, 0.2)";
-  //   background.style.opacity = "0.5";
-  // };
 
   useEffect(() => {
     setTimeout(() => {

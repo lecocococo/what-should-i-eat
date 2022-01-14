@@ -13,32 +13,7 @@ class Dbdb extends Component {
     };
   }
 
-  // db삽입
-  submitId = () => {
-    const post = {
-      test: this.state.testbody,
-    };
-
-    fetch("http://localhost:3001/api", {
-      method: "post", // 통신방법
-      headers: {
-        "content-type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify(post),
-    })
-      .then((res) => res.json())
-      .then((json) => {
-        console.log(json.text);
-        this.setState({
-          testbody: json.text,
-        });
-      });
-  };
-
   onCall = () => {
-    // 금지된 항목 props에 잘 들어옴
-    console.log(this.props.ban_list);
     fetch("http://127.0.0.1:3001/api", {
       method: "post",
       headers: {
@@ -93,16 +68,4 @@ class Dbdb extends Component {
   }
 }
 
-// function onDataHandler() {
-//   const axiosSet = axios.create({
-//     baseURL: "http://localhost:3001", //node server의 url
-//     headers: {
-//       "Content-Type": "application/json; charset=UTF-8",
-//     },
-//     responseType: "json",
-//     responseEncoding: "json",
-//   });
-//   const res = axiosSet.get("/api");
-//   console.log(res.data);
-// }
 export default connect(mapStateToProps)(Dbdb);
